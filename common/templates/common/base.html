@@ -37,13 +37,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://www.yapitasi.com">YAPITASI DEMO CRM</a>
+          <a class="navbar-brand" href="http://www.yapitasicrm.com/tr/pages/yapitasi_crm">YAPITASI DEMO CRM</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
               <li class="active"><a href="{% url 'customer_list' %}">Müşteri Listesi</a></li>
               <li><a href="{% url 'meeting_list' %}">Görüşme Listesi</a></li>
-              <li><a href="{% url 'customer_add' %}">Yeni Müşteri</a></li>
+              <li><a href="{% url 'customer_add' %}"><img src="{{ STATIC_URL }}icons/document_add_24.png" alt="Yeni Müşteri">Yeni Müşteri</a></li>
+              <li><a href="{% url 'customer_search' %}"><img src="{{ STATIC_URL }}icons/search_24.png" alt="Yeni Müşteri">Arama</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

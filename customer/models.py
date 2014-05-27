@@ -7,8 +7,8 @@ from django.forms.extras.widgets import SelectDateWidget
 class Customer(models.Model):
     name = models.CharField('name', editable=True, max_length="50")
     surname = models.CharField('surname', max_length="50")
-    birth_date=models.DateField()
-    email = models.EmailField(max_length=70,blank=True, null=True, unique= True)
+    birth_date = models.DateField()
+    email = models.EmailField(max_length=70, blank=True, null=True, unique=True)
     country = models.CharField('country', max_length="50")
     city = models.CharField('city', max_length="50")
     address = models.CharField('address', max_length="100")
@@ -31,7 +31,7 @@ class Meeting(models.Model):
     Yapitasi_Residence = 'YT Residence'
     Yapitasi_Life = 'YT Life'
 
-    PROJECT_CHOICES = ((Yapitasi_Residence,'YT Residence'),(Yapitasi_Life,'YT Life'))
+    PROJECT_CHOICES = ((Yapitasi_Residence,'YT Residence'), (Yapitasi_Life,'YT Life'))
 
     customer = models.ForeignKey(Customer)
     meeting_type = models.CharField(max_length="20", choices=TYPE_CHOICES, default=Ziyaret)

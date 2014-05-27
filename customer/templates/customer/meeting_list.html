@@ -21,8 +21,8 @@
             <td>{{ meeting.meeting_date }}</td>
             <td>{{ meeting.meeting_project }}</td>
             <td>{{ meeting.meeting_comment }}</td>
-            <td><a href="{% url 'meeting_update' id=meeting.id %}">Düzenle</a></td>
-            <td><a onclick="if(!confirm('Silmek istediğinize emin misiniz?'))return false;" href="{% url 'meeting_delete' id=meeting.id %}">Sil</a></td>
+            <td><a href="{% url 'meeting_update' id=meeting.id %}"><img src="{{ STATIC_URL }}icons/edit_16.png" alt="Düzenle"></a></td>
+            <td><a onclick="if(!confirm('Silmek istediğinize emin misiniz?'))return false;" href="{% url 'meeting_delete' id=meeting.id %}"><img src="{{ STATIC_URL }}icons/delete_16.png" alt="Sil"></a></td>
         </tr>
     {% endfor %}
     </table>

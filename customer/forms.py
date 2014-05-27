@@ -16,10 +16,10 @@ class MeetingForm(ModelForm):
         exclude = ['customer']
 
 class SearchForm(forms.Form):
-    search_word = forms.CharField()
+    search_query = forms.CharField()
 
-    def clean_search_word(self):
-       word = self.cleaned_data['search_word']
-       return word
+    def clean_search_query(self):
+        words = self.cleaned_data['search_query']
+        return words
 
 

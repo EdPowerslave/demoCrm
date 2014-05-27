@@ -5,18 +5,8 @@
 {% block content %}
 
  <h1>Müşteri Listesi</h1>
-    <br>
-    <br>
-    <form method="GET">
-    {{ search_form.search_word.label }}
-    {{ search_form.search_word }}
-    <input type="search" value="Ara"/>
-    <input type="submit"  value="Ara"/>
-    {{ search_form.search_word.errors }}
-</form>
 
-{% if customer_count %}
-    <table id= "tbl1" class="table table-striped table-hover">
+ <table id= "tbl1" class="table table-striped table-hover">
     <tr>
         <th>Adı Soyadı</th>
         <th>Doğum Tarihi</th>
@@ -41,24 +31,10 @@
             <td>{{ customer.mobile_phone }}</td>
             <td>{{ customer.added }}</td>
 
-            <td><a href="{% url 'customer_update' id=customer.id %}">Düzenle</a></td>
-            <td> <a onclick="if(!confirm('Silmek istediğinize emin misiniz?'))return false;" href="{% url 'customer_delete' id=customer.id %}">Sil</a></td>
+            <td><a href="{% url 'customer_update' id=customer.id %}"><img src="{{ STATIC_URL }}icons/edit_16.png" alt="Düzenle"></a></td>
+            <td> <a onclick="if(!confirm('Silmek istediğinize emin misiniz?'))return false;" href="{% url 'customer_delete' id=customer.id %}"><img src="{{ STATIC_URL }}icons/delete_16.png" alt="Sil"></a></td>
         </tr>
     {% endfor %}
  </table>
 
-
-
-
- {% for i in customer_list_page.paginator.page_range %}
-        {% if customer_list_page.number == i %}
-            <a href="?page={{i}}" class="secili">
-        {% else %}
-            <a href="?page={{i}}">
-        {% endif %}
-            {{i}}</a>
-     {% empty %}
-        <li>Sonuç Bulunamadı</li>
-    {% endfor %}
-{% endif %}
 {% endblock content %}

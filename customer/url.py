@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^customer_create/$', views.customer_create, name='customer_add'),
     url(r'^customer_update/(?P<id>\d+)$', views.customer_update, name='customer_update'),
     url(r'^customer_delete/(?P<id>\d+)$', views.customer_delete, name='customer_delete'),
+    url(r'^customer_search/$', views.search_in_customers, name='customer_search'),
 
     url(r'^meeting_list/$', views.meeting_list, name='meeting_list'),
     url(r'^meeting/(?P<id>\d+)$', views.meeting_view, name='meeting'),

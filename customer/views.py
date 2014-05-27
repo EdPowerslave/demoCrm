@@ -9,23 +9,7 @@ from django.db.models import Q
 def customer_list(request, template_name='customer/customer_list.html'):
     customers = Customer.objects.order_by('name')
     data = {'customer_list': customers}
-    page = request.GET.get('page', 1)
-    search_form = SearchForm()
-
-    if request.GET.get('search_word'):
-      search_form = SearchForm(request.GET)
-
-      if search_form.is_valid():
-         search_word = search_form.cleaned_data['search_word']
-         all_customers = Customer.objects.filter(Q(name__contains=search_word) | Q(surname__contains=search_word))
-
-
-    customer_pages = Paginator(customers, 5)
-    customer_list_page = customer_pages.page(int(page))
-    data2 = {"all_customers": all_customers}
-    customer_count = all_customers.count()
-   #return render(request, template_name, data)
-    return render_to_response(template_name, {data, data2}, context_instance=RequestContext(request))
+    return render(request, template_name, data)
 
 
 def customer_view(request, id, template_name='customer/customer.html'):
@@ -94,10 +78,17 @@ def meeting_delete(request, id):
     return redirect('meeting_list')
     return render(request, data)
 
-def customer_search(request):
-    if request.GET:
-        search_query = request.GET('name')
-        results = Customer.objects.filter(name_isstartwith=search_query)
-        return render_to_response('customer_list.html',{'results':results})
-    return render_to_response('customer_list.html', {})
+def search_in_customers(request, template_name = 'customer/customer_search.html'):
+    search_form = SearchForm
+    if request.GET.get('search_query'):
+        search_form = SearchForm(request.GET)
+        if search_form.is_valid():
+            search_query = search_form.cleaned_data['search_query']
+            all_customers = Customer.objects.all().filter(Q(name=search_query) | Q(surname=search_query))
+            customer_count = all_customers.count()
+
+    return render_to_response(template_name, locals(), context_instance=RequestContext(request))
+
+
+
 
